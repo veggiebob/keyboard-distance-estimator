@@ -6,12 +6,15 @@ main :: IO ()
 main = do {
     -- inputh <- openFile "keyboard_files/positions" ReadMode;
     -- showFile inputh
+    putStrLn "enter name of keyboard map in keyboard_files/keyboard_map/ :";
     keyboardName <- getLine;
+    putStrLn "enter name of test file in test_files/ :";
+    testFile <- getLine;
 
     fpos <- readFile "keyboard_files/positions";
     ffmp <- readFile "keyboard_files/fingermap";
     fkmp <- readFile $ "keyboard_files/keyboard_maps/" ++ keyboardName;
-    input <- readFile "test_files/test1";
+    input <- readFile $ "test_files/" ++ testFile;
 
     let positions = map readPair . lines $ fpos;
         fmp = map (map (\x -> read [x])) . lines $ ffmp :: FingerMap;
